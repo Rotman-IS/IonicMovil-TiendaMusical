@@ -32,6 +32,7 @@ export class InicioPage implements OnInit {
     
   }
   agregarCarro(producto){
+    
     this.carroServ.agregarProducto(producto);
   }
  

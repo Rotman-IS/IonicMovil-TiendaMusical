@@ -1,9 +1,9 @@
 export interface Producto {
-    codigo: string;
+    codigo: number;
     nombre: string;
     artista: string;
     anio: string;
     duracion: string;
     precio: string;
-    imagen: string;
+    imagenProd: string;
 }
