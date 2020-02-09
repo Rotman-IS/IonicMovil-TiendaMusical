@@ -6,22 +6,27 @@ import { Cliente } from '../interfaz/interfazCliente';
   providedIn: 'root'
 })
 export class TareasService {
-  private url = 'http://192.168.1.8:8080/TiendaVirtualMusicaDos/ws/cliente';
+  private url = 'http://localhost:8080/TiendaVirtualMusica/ws';
 
   constructor(
     private http: HttpClient 
   ) { }
 
   crearCliente(cliente: Cliente){
-    const path = `${this.url}/insertarCliente`;
+    const path = `${this.url}/cliente/insertarCliente`;
     return this.http.post(path, cliente);
   }
 
   logeo(user: string, pass: string){
-    const ruta = `${this.url}/logeo/${user}/${pass}`;
+    const ruta = `${this.url}/cliente/logeo/${user}/${pass}`;
     return this.http.post(ruta, {
       usuario: user,
       password: pass,
     });
+  }
+
+  listarProducto(){
+    const ruta = `${this.url}/producto/listarProducto`;
+    return this.http.get(ruta);
   }
 }
