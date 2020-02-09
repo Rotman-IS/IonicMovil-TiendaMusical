@@ -13,6 +13,9 @@ import { TareasService } from 'src/app/servicio/tareas.service';
 })
 export class InicioPage implements OnInit {
 
+
+  
+
   carro  = [];
   private producto: Producto;
 
@@ -32,10 +35,24 @@ export class InicioPage implements OnInit {
     
   }
   agregarCarro(producto){
-    
-    this.carroServ.agregarProducto(producto);
+    this.crearCarrito(producto);
+        this.carroServ.agregarProducto(producto);
   }
  
+
+
+  crearCarrito(producto){
+  
+    this.tareaService.crearCarrito2(producto)
+    .subscribe((newProducto) => {
+      console.log(newProducto)
+    },
+    error => {
+      console.error(error);
+    },
+     // () => this.navegar()
+    )
+  }
 
 
 }

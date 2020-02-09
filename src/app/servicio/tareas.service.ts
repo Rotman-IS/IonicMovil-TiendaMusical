@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../interfaz/interfazCliente';
+import { Producto } from '../interfaz/interfazProducto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +30,13 @@ export class TareasService {
     const ruta = `${this.url}/producto/listarProducto`;
     return this.http.get(ruta);
   }
+
+  crearCarrito2(producto: Producto){
+    const path = `${this.url}/producto/insertarClienteCarrito`;
+    
+    return this.http.post(path, producto);
+  }
+
+
+
 }

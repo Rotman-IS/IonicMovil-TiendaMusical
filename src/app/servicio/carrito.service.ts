@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../interfaz/interfazProducto';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +14,7 @@ export class CarritoService {
   private carro = [];
   
   constructor(
-    
+   
   ) { }
 
   getCarro(){
@@ -19,7 +22,14 @@ export class CarritoService {
   }
 
   agregarProducto(producto){
+
+    
+    
+    
     this.carro.push(producto);
     
+   
   }
+
+
 }
