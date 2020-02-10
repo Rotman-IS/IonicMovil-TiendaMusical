@@ -34,4 +34,11 @@ export class CarritoPage implements OnInit {
     
   }
 
+  eliminar(id: string){
+    
+    this.tareaService.eliminarProductoCarro(id, this.userLogeado.id);
+
+    console.log(id)
+  }
+
 }

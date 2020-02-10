@@ -44,9 +44,18 @@ export class TareasService {
   }
 
   listarCarro(idCarro: string){
-    const ruta = `${this.url}/carro/listarCarro?idProducto=${idCarro}`;
+    const ruta = `${this.url}/carro/listarCarro?idCliente=${idCarro}`;
     
     return this.http.get(ruta);
+  }
+
+  eliminarProductoCarro(idProd: string, idCliente: string){
+    console.log(idProd , idCliente);
+    const ruta = `${this.url}/carro/eliminarProducto/${idProd}/${idCliente}`;
+    return this.http.post( ruta, {
+      idProd: idProd,
+      idUser: idCliente,
+    });
   }
 
   
