@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../interfaz/interfazCliente';
 import { Producto } from '../interfaz/interfazProducto';
+import { Observable } from 'rxjs';
+import { ClienteClass } from '../interfaz/interfazCliente copy';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,9 @@ export class TareasService {
     return this.http.post(path, cliente);
   }
 
-  logeo(user: string, pass: string){
+  logeo(user: string, pass: string):Observable<ClienteClass>{
     const ruta = `${this.url}/cliente/logeo/${user}/${pass}`;
-    return this.http.post(ruta, {
+    return this.http.post<ClienteClass>(ruta, {
       usuario: user,
       password: pass,
     });
@@ -31,11 +33,23 @@ export class TareasService {
     return this.http.get(ruta);
   }
 
-  crearCarrito2(producto: Producto){
-    const path = `${this.url}/producto/insertarClienteCarrito`;
+  crearCarrito2(producto: Producto, id: string){
+    const path = `${this.url}/carro/insertarCarrito/${producto.idProducto}/${id}`;
+    console.log(id);  
     
-    return this.http.post(path, producto);
+    return this.http.post(path, {
+      idpro: producto.idProducto,
+      iduser: id, 
+    });
   }
+
+  listarCarro(idCarro: string){
+    const ruta = `${this.url}/carro/listarCarro?idProducto=${idCarro}`;
+    
+    return this.http.get(ruta);
+  }
+
+  
 
 
 

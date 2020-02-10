@@ -16,11 +16,11 @@ export class UserServiceService {
   setUserLogeado(user:User){
     this.logeado = true;
     this.userLogeado = user;
-    localStorage.setItem('currentUser',JSON.stringify(user));
+    localStorage.setItem('User',JSON.stringify(user));
 
   }
 
   getUserLogeado(){
-    return JSON.parse(localStorage.getItem('currentUser'));
+    return JSON.parse(localStorage.getItem('User'));
   }
 }

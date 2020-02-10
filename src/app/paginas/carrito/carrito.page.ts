@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from 'src/app/interfaz/interfazProducto';
 import { CarritoService } from 'src/app/servicio/carrito.service';
+import { TareasService } from 'src/app/servicio/tareas.service';
+import { User } from 'src/app/Usuario/user.model';
+import { UserServiceService } from 'src/app/servicio/user-service.service';
 
 
 @Component({
@@ -10,14 +13,25 @@ import { CarritoService } from 'src/app/servicio/carrito.service';
 })
 export class CarritoPage implements OnInit {
 
-  carro: Producto[] = [];
+  private producto: Producto
+  userLogeado: User
 
   constructor(
-    private carroSer: CarritoService
+    private carroSer: CarritoService,
+    private tareaService: TareasService,
+    private userServe: UserServiceService
   ) { }
 
   ngOnInit() {
-    this.carro = this.carroSer.getCarro()
+    this.getListarCarro();
+    // this.carro = this.carroSer.getCarro()
+  }
+
+  getListarCarro(){
+    this.userLogeado = this.userServe.getUserLogeado();
+    this.tareaService.listarCarro(this.userLogeado.id)
+    .subscribe((product: Producto) => (this.producto = product));
+    
   }
 
 }
